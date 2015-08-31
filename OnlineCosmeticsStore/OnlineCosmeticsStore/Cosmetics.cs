@@ -6,14 +6,20 @@ using System.Threading.Tasks;
 
 namespace OnlineCosmeticsStore
 {
+    /// <summary>
+    /// MyFirstAtHomeProject
+    /// </summary>
     class Cosmetics
     {
+        #region Properties
         public string Name { get; set; }
         public double Price { get; set; }
         public string Color { get; set; }
         public string Brand { get; set; }
         public MakeupType Type { get; set; }
+        #endregion
 
+        #region Enum
         public enum MakeupType
         { Foundation,
         Mascara,
@@ -23,7 +29,7 @@ namespace OnlineCosmeticsStore
         Eyeliner,
         Blush,
         }
-
+        #endregion
 
         static void Main(string[] args)
         {
