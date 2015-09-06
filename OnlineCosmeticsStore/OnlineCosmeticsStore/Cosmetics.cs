@@ -25,7 +25,6 @@ namespace OnlineCosmeticsStore
         Mascara,
         Eyeshadow,
         Lipstick,
-        NailPolish,
         Eyeliner,
         Blush,
         }
