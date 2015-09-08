@@ -12,7 +12,7 @@ namespace OnlineCosmeticsStore
     class Cosmetics
     {
         #region Properties
-        public string Name { get; set; }
+        public string CosmeticName { get; set; }
         public double Price { get; set; }
         public string Color { get; set; }
         public string Brand { get; set; }
@@ -38,7 +38,7 @@ namespace OnlineCosmeticsStore
             string message = "";
 
             if (userValue.ToLower() == "yes")
-            message = "Ok, great!";
+            message = "Ok, great! Let's set you up with an account, please enter your Name";
 
             else if (userValue.ToLower() == "no")
             message = "Ok, have a great day!";
@@ -47,8 +47,16 @@ namespace OnlineCosmeticsStore
                 message = "Please restart the program and type in 'Yes' or 'No'";
 
             Console.WriteLine(message);
-            Console.ReadLine();
+            string customerInput = Console.ReadLine();
 
+
+            #region CustomerAccountSetup
+            CustomerInformation customerAccount = new CustomerInformation();
+            customerAccount.CustomerName = customerInput;
+
+            Console.WriteLine (customerAccount.CustomerName);
+            Console.ReadLine();
+            #endregion
         }
     }
 }
