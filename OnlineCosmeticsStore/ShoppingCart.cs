@@ -9,20 +9,20 @@ namespace OnlineCosmeticsStore
 {
     class ShoppingCart
     {
-        public ArrayList Items { get; set; }
-        public double TotalPrice
-        {
-            get
-            {
-                double total = 0;
-                foreach (Cosmetics currentItem in this.Items)
-                {
-                    total = total + currentItem.Price;
-                }
+        //public ArrayList Items { get; set; }
+        //public double TotalPrice
+        //{
+        //    get
+        //    {
+        //        double total = 0;
+        //        foreach (Cosmetics currentItem in this.Items)
+        //        {
+        //            total = total + currentItem.Price;
+        //        }
 
-                return total;
-            }
-        }
+        //        return total;
+        //    }
+        //}
 
 
     }
