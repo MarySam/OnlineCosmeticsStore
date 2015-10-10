@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace OnlineCosmeticsStore
 {
-    class CustomerInformation
+    public class CustomerInformation
     {
         #region Variables
         static int lastAccountNumber = 0;
@@ -14,7 +15,10 @@ namespace OnlineCosmeticsStore
 
         #region Properties
         public string CustomerName { get; set; }
+
+        [Key]
         public int AccountNumber { get; private set; }
+
         public string Address { get; set; }
         #endregion
 

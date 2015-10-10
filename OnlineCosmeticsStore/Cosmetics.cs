@@ -21,12 +21,13 @@ namespace OnlineCosmeticsStore
 
         #region Enum
         public enum MakeupType
-        { Foundation,
-        Mascara,
-        Eyeshadow,
-        Lipstick,
-        Eyeliner,
-        Blush,
+        {
+            Foundation,
+            Mascara,
+            Eyeshadow,
+            Lipstick,
+            Eyeliner,
+            Blush,
         }
         #endregion
 
@@ -65,13 +66,22 @@ namespace OnlineCosmeticsStore
             #endregion
 
             #region CustomerAccountSetup
-            CustomerInformation customerAccount = new CustomerInformation();
-            customerAccount.CustomerName = customerInput;
-            customerAccount.Address = customerAddressInput;
 
-            Console.WriteLine("AccountNumber: {0}, CustomerName: {1}, Address: {2}", customerAccount.AccountNumber, customerAccount.CustomerName, customerAccount.Address);
-            Console.ReadLine();
-            #endregion
+            using (var db = new CustomerModel())
+            {
+                CustomerInformation customerAccount = new CustomerInformation();
+                customerAccount.CustomerName = customerInput;
+                customerAccount.Address = customerAddressInput;
+
+                Console.WriteLine("AccountNumber: {0}, CustomerName: {1}, Address: {2}", customerAccount.AccountNumber, customerAccount.CustomerName, customerAccount.Address);
+                Console.ReadLine();
+                #endregion
+
+                db.CustomerInformations.Add(customerAccount);
+                db.SaveChanges();
+
+            }
+
         }
     }
 }
