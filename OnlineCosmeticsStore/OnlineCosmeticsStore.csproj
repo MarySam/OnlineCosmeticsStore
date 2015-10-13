@@ -57,6 +57,7 @@
     <Compile Include="Cosmetics.cs" />
     <Compile Include="CustomerInformation.cs" />
     <Compile Include="CustomerModel.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShoppingCart.cs" />
   </ItemGroup>

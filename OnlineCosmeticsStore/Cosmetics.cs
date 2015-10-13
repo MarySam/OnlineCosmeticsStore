@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineCosmeticsStore
 {
-    /// <summary>
+    /// <summary> This class has all of the cosmetics items.
     /// MyFirstAtHomeProject
     /// </summary>
     class Cosmetics
@@ -31,57 +31,5 @@ namespace OnlineCosmeticsStore
         }
         #endregion
 
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Welcome to Mary's Online Cosmetic Store!\nAre you interested in seeing what we have in store? Yes or No?");
-            string userValue = Console.ReadLine();
-
-            string message = "";
-
-            if (userValue.ToLower() == "yes")
-            {
-                message = "Ok, great! Let's set you up with an account, please enter your Name";
-            }
-            else if (userValue.ToLower() == "no")
-            {
-                message = "Ok, have a great day!";
-            }
-            else
-            {
-                message = "Please restart the program and type in 'Yes' or 'No'";
-            }
-
-            Console.WriteLine(message);
-            string customerInput = Console.ReadLine();
-
-            //If the uservalue does not equal "yes" at all, the program will end.
-            if (userValue.ToLower() != "yes")
-            {
-                return;
-            }
-
-            #region Entering in Address
-            Console.WriteLine("Please enter you address");
-            string customerAddressInput = Console.ReadLine();
-            #endregion
-
-            #region CustomerAccountSetup
-
-            using (var db = new CustomerModel())
-            {
-                CustomerInformation customerAccount = new CustomerInformation();
-                customerAccount.CustomerName = customerInput;
-                customerAccount.Address = customerAddressInput;
-
-                Console.WriteLine("AccountNumber: {0}, CustomerName: {1}, Address: {2}", customerAccount.AccountNumber, customerAccount.CustomerName, customerAccount.Address);
-                Console.ReadLine();
-                #endregion
-
-                db.CustomerInformations.Add(customerAccount);
-                db.SaveChanges();
-
-            }
-
-        }
     }
 }

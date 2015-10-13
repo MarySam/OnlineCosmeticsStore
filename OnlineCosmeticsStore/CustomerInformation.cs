@@ -9,34 +9,66 @@ namespace OnlineCosmeticsStore
 {
     public class CustomerInformation
     {
-        #region Variables
-        static int lastAccountNumber = 0;
-        #endregion
+        //Variables
+        private static int lastAccountNumber = 0;
 
-        #region Properties
+        //Properties
         public string CustomerName { get; set; }
 
         [Key]
-        public int AccountNumber { get; private set; }
+        public string EmailAddress { get; set; }
 
         public string Address { get; set; }
-        #endregion
+
+        public int AccountNumber { get; private set; }
+
 
         //For the account number to increment by 1
         /// <summary>
         /// Default Constructor
         /// </summary>
-        #region Constructors
+
+        //Constructors
         public CustomerInformation()
         {
             lastAccountNumber = lastAccountNumber + 1;
             AccountNumber = lastAccountNumber;
         }
-        #endregion
 
-        //public override string ToString()
-        //{
-        //    return string.Format("Customer Name: {0}\nAccount Number: {1}\nAddress: {2}", this.CustomerName, this.AccountNumber, this.Address);
-        //}
+        public static CustomerInformation CreateCustomerInformation()
+        {
+            #region Entering in Name
+            Console.WriteLine("Please enter your name");
+            string customerNameInput = Console.ReadLine();
+            #endregion
+
+            #region Entering in Email Address
+            Console.WriteLine("Please enter your Email address");
+            string customerEmailAddressInput = Console.ReadLine();
+            #endregion
+
+            #region Entering in Address
+            Console.WriteLine("Please enter you address");
+            string customerAddressInput = Console.ReadLine();
+            #endregion
+
+            using (var db = new CustomerModel())
+            {
+                CustomerInformation customerAccount = new CustomerInformation();
+                customerAccount.CustomerName = customerNameInput;
+                customerAccount.EmailAddress = customerEmailAddressInput;
+                customerAccount.Address = customerAddressInput;
+
+                Console.WriteLine("CustomerName: {0}, CustomerEmailAddress: {1}, Address: {2}, AccountNumber {3}", customerAccount.CustomerName, customerAccount.EmailAddress, customerAccount.AccountNumber);
+                Console.ReadLine();
+
+                db.CustomerInformations.Add(customerAccount);
+                db.SaveChanges();
+
+                return customerAccount;
+            }
+        }
     }
 }
+
+
