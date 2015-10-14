@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cosmetics.cs" />
+    <Compile Include="CosmeticsModel.cs" />
     <Compile Include="CustomerInformation.cs" />
     <Compile Include="CustomerModel.cs" />
     <Compile Include="Program.cs" />

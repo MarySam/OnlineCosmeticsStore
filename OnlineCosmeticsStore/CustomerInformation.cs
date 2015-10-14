@@ -9,7 +9,7 @@ namespace OnlineCosmeticsStore
 {
     public class CustomerInformation
     {
-        //Variables
+        //Variable
         private static int lastAccountNumber = 0;
 
         //Properties
@@ -59,13 +59,21 @@ namespace OnlineCosmeticsStore
                 customerAccount.EmailAddress = customerEmailAddressInput;
                 customerAccount.Address = customerAddressInput;
 
-                Console.WriteLine("CustomerName: {0}, CustomerEmailAddress: {1}, Address: {2}, AccountNumber {3}", customerAccount.CustomerName, customerAccount.EmailAddress, customerAccount.AccountNumber);
+                Console.WriteLine("CustomerName: {0}, CustomerEmailAddress: {1}, Address: {2}, AccountNumber {3}", customerAccount.CustomerName, customerAccount.EmailAddress, customerAccount.Address, customerAccount.AccountNumber);
                 Console.ReadLine();
 
                 db.CustomerInformations.Add(customerAccount);
                 db.SaveChanges();
 
                 return customerAccount;
+            }
+        }
+        public static CustomerInformation[] GetAllCustomerInformationByEmail(string emailAddress)
+        {
+            using (var db = new CustomerModel())
+            {
+                var customerInfo = db.CustomerInformations.Where(info => info.EmailAddress == emailAddress);
+                return customerInfo.ToArray();
             }
         }
     }
