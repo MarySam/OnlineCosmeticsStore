@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace OnlineCosmeticsStore
 {
@@ -11,6 +13,7 @@ namespace OnlineCosmeticsStore
     {
         //Variable
         private static int lastAccountNumber = 0;
+        private static List<CustomerInformation> customerInformations = new List<CustomerInformation>();
 
         //Properties
         public string CustomerName { get; set; }
@@ -62,9 +65,9 @@ namespace OnlineCosmeticsStore
                 Console.WriteLine("CustomerName: {0}, CustomerEmailAddress: {1}, Address: {2}, AccountNumber {3}", customerAccount.CustomerName, customerAccount.EmailAddress, customerAccount.Address, customerAccount.AccountNumber);
                 Console.ReadLine();
 
+                customerInformations.Add(customerAccount);
                 db.CustomerInformations.Add(customerAccount);
                 db.SaveChanges();
-
                 return customerAccount;
             }
         }
@@ -72,7 +75,7 @@ namespace OnlineCosmeticsStore
         {
             using (var db = new CustomerModel())
             {
-                var customerInfo = db.CustomerInformations.Where(info => info.EmailAddress == emailAddress);
+                var customerInfo = db.CustomerInformations.Where(info => info.EmailAddress.ToLower() == emailAddress);
                 return customerInfo.ToArray();
             }
         }
