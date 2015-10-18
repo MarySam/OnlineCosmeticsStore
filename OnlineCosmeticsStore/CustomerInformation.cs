@@ -25,7 +25,6 @@ namespace OnlineCosmeticsStore
 
         public int AccountNumber { get; private set; }
 
-
         //For the account number to increment by 1
         /// <summary>
         /// Default Constructor
@@ -41,17 +40,17 @@ namespace OnlineCosmeticsStore
         public static CustomerInformation CreateCustomerInformation()
         {
             #region Entering in Name
-            Console.WriteLine("Please enter your name");
+            Console.Write("Please enter your name:");
             string customerNameInput = Console.ReadLine();
             #endregion
 
             #region Entering in Email Address
-            Console.WriteLine("Please enter your Email address");
+            Console.Write("Please enter your Email address:");
             string customerEmailAddressInput = Console.ReadLine();
             #endregion
 
             #region Entering in Address
-            Console.WriteLine("Please enter you address");
+            Console.Write("Please enter you address:");
             string customerAddressInput = Console.ReadLine();
             #endregion
 
