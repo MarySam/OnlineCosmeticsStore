@@ -56,17 +56,25 @@ namespace OnlineCosmeticsStore
 
             using (var db = new CustomerModel())
             {
+                if (lastAccountNumber == 0)
+                {
+                    //This allows us to intialize the last account number after we have connected to the database.
+                    var lastCustomerInfo = db.CustomerInformations.ToArray().Last();
+                    lastAccountNumber = lastCustomerInfo.AccountNumber;
+                }
+
                 CustomerInformation customerAccount = new CustomerInformation();
                 customerAccount.CustomerName = customerNameInput;
                 customerAccount.EmailAddress = customerEmailAddressInput;
                 customerAccount.Address = customerAddressInput;
+                                
+                customerInformations.Add(customerAccount);
+                db.CustomerInformations.Add(customerAccount);
+                db.SaveChanges();
 
                 Console.WriteLine("CustomerName: {0}, CustomerEmailAddress: {1}, Address: {2}, AccountNumber {3}", customerAccount.CustomerName, customerAccount.EmailAddress, customerAccount.Address, customerAccount.AccountNumber);
                 Console.ReadLine();
 
-                customerInformations.Add(customerAccount);
-                db.CustomerInformations.Add(customerAccount);
-                db.SaveChanges();
                 return customerAccount;
             }
         }

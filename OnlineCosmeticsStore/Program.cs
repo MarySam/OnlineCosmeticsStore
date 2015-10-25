@@ -13,8 +13,9 @@ namespace OnlineCosmeticsStore
             bool success = false;
             short attempts = 1;
             Console.WriteLine("**********WELCOME TO MARY'S ONLINE COSMETICS STORE**********");
+            try
             {
-                while (!success && attempts++ <4)
+                while (!success && attempts++ < 4)
 
                 {
                     Console.WriteLine("Please choose one of the following optons.\n1.Login\n2.Sign Up\n3.Browse as a Guest");
@@ -43,23 +44,22 @@ namespace OnlineCosmeticsStore
                             {   //In case there are more than one accounts with the same email address.  For simplicity, we are defaulting to the first account on file. Hence the [0] element.
                                 CustomerInformation loggedInCustomer = customerInfo[0];
                                 Console.WriteLine("Welcome Back {0}", loggedInCustomer.CustomerName);
+                                //A break to take the logged in customer out of the while loop so that they could see what items we have in store.
+                                break;
                             }
                         }
-
                     //Here we are calling up the CustomerInformation class so that the user can set up their account.  
                     if (convertedUserValue == 2)
                     {
                         Console.WriteLine("Ok, great! Let's get your account set up.");
                         CustomerInformation.CreateCustomerInformation();
+                        //This breaks out of the while loop and takes the customer to the items in the store.
+                        break;
                     }
-
-                    //Here we are calling up the Cosmetics class to display to the user all of the items that we have in store.
                     if (convertedUserValue == 3)
                     {
-                        Console.WriteLine("Ok, let's check out what cool items we have in store!");
-                        var cosmeticslist = Cosmetics.GetAllCosmetics();
-                        Console.WriteLine(cosmeticslist);
-                        Console.ReadLine();
+                        //This breaks out of the while loop and takes the customer to the items in the store.
+                        break;
                     }
                     else if (convertedUserValue == 0 || convertedUserValue < 0 || convertedUserValue > 3)
                     {
@@ -67,6 +67,15 @@ namespace OnlineCosmeticsStore
                         Console.ReadLine();
                     }
                 }
+                //Displays all items in store.
+                Console.WriteLine("Ok, let's check out what cool items we have in store!");
+                var cosmeticslist = Cosmetics.GetAllCosmetics();
+                Console.WriteLine(cosmeticslist);
+                Console.ReadLine();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Sorry, the system is down.  Please try again later.");
             }
         }
     }
