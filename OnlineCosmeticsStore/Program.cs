@@ -39,6 +39,7 @@ namespace OnlineCosmeticsStore
                             {
                                 Console.WriteLine("Sorry, we don't have this email address on file. Please set up a new account.");
                                 CustomerInformation.CreateCustomerInformation();
+                                break;
                             }
                             else
                             {   //In case there are more than one accounts with the same email address.  For simplicity, we are defaulting to the first account on file. Hence the [0] element.
