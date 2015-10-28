@@ -58,7 +58,7 @@ namespace OnlineCosmeticsStore
             {
                 if (lastAccountNumber == 0)
                 {
-                    //This allows us to intialize the last account number after we have connected to the database.
+                    //This increments based on the count of rows.
                     lastAccountNumber = db.CustomerInformations.Count();
                 }
 
