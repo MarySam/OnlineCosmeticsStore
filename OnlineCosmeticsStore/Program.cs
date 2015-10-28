@@ -66,16 +66,19 @@ namespace OnlineCosmeticsStore
                         Console.Write("Sorry that is not a valid option, press 'Enter' to continue.");
                         Console.ReadLine();
                     }
+                }//end while bracket
+
+                {   //Displays all items in store.
+                    Console.WriteLine("Ok, let's check out what cool items we have in store!");
+                    var cosmeticslist = Cosmetics.GetAllCosmetics();
+                    Console.WriteLine(cosmeticslist);
+                    Console.ReadLine();
                 }
-                //Displays all items in store.
-                Console.WriteLine("Ok, let's check out what cool items we have in store!");
-                var cosmeticslist = Cosmetics.GetAllCosmetics();
-                Console.WriteLine(cosmeticslist);
-                Console.ReadLine();
             }
             catch (Exception)
             {
                 Console.WriteLine("Sorry, the system is down.  Please try again later.");
+                Console.ReadLine();
             }
         }
     }
