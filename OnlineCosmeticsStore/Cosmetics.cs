@@ -27,7 +27,7 @@ namespace OnlineCosmeticsStore
         public MakeupType Type { get; set; }
         #endregion
 
-
+        //The enum data type is an integer by default.  The first item in the list starts at 0.
         public enum MakeupType
         {
             Foundation,
@@ -38,14 +38,24 @@ namespace OnlineCosmeticsStore
             Blush,
         }
 
-
         public static Cosmetics[] GetAllCosmetics()
         {
             using (var db = new CosmeticsModel())
             {
                 var allCosmetics = db.CosmeticsList;
                 return allCosmetics.ToArray();
+
             }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} - {1} - {2}", this.CosmeticName, this.Type, this.Price);
         }
     }
 }
+
+
+//db.CosmeticsList.Add(new Cosmetics());
+//db.SaveChanges();
+

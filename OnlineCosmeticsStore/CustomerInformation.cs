@@ -14,6 +14,7 @@ namespace OnlineCosmeticsStore
         //Variable
         private static int lastAccountNumber = 0;
         private static List<CustomerInformation> customerInformations = new List<CustomerInformation>();
+        private static bool accountsLoaded = false;
 
         //Properties
         public string CustomerName { get; set; }
@@ -56,10 +57,11 @@ namespace OnlineCosmeticsStore
 
             using (var db = new CustomerModel())
             {
-                if (lastAccountNumber == 0)
+                if (!accountsLoaded)
                 {
                     //This increments based on the count of rows.
                     lastAccountNumber = db.CustomerInformations.Count();
+                    accountsLoaded = true;
                 }
 
                 CustomerInformation customerAccount = new CustomerInformation();
@@ -77,6 +79,7 @@ namespace OnlineCosmeticsStore
                 return customerAccount;
             }
         }
+
         public static CustomerInformation[] GetAllCustomerInformationByEmail(string emailAddress)
         {
             using (var db = new CustomerModel())
