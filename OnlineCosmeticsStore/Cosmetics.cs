@@ -37,7 +37,7 @@ namespace OnlineCosmeticsStore
             Eyeliner,
             Blush,
         }
-
+        //This code loads up our database and turns it to an array.
         public static Cosmetics[] GetAllCosmetics()
         {
             using (var db = new CosmeticsModel())
@@ -52,8 +52,34 @@ namespace OnlineCosmeticsStore
         {
             return string.Format("{0} - {1} - {2}", this.CosmeticName, this.Type, this.Price);
         }
+
+        public static void DisplayContents()
+        {
+            
+            Cosmetics[] DisplayAllCosmetics = GetAllCosmetics();
+
+            Console.WriteLine("{0,-15} {1,-30} {2,6} {3,20} {4,20} {5,20}", "Item Number", "Cosmetic Name", "Price", "Color", "Brand", "Type");
+
+            for (int x = 0; x < DisplayAllCosmetics.Length; x++)
+            {
+                Console.Write("{0,-15} ", DisplayAllCosmetics[x].CosmeticItemNumber);
+                Console.Write("{0,-30} ", DisplayAllCosmetics[x].CosmeticName);
+                Console.Write("{0,6:c} ", DisplayAllCosmetics[x].Price);
+                Console.Write("{0,20} ", DisplayAllCosmetics[x].Color);
+                Console.Write("{0,20} ", DisplayAllCosmetics[x].Brand);
+                Console.Write("{0,20} ", DisplayAllCosmetics[x].Type);
+
+                Console.WriteLine();
+
+            }
+            Console.ReadLine();
+        }
     }
+
+
 }
+
+
 
 
 //db.CosmeticsList.Add(new Cosmetics());

@@ -74,11 +74,13 @@ namespace OnlineCosmeticsStore
                 //Displays all items in store.
                 Console.WriteLine("Ok, let's check out what cool items we have in store!");
                 var cosmeticslist = Cosmetics.GetAllCosmetics();
-                foreach (var item in cosmeticslist)
-                {
-                    Console.WriteLine(item);
-                }
-                Console.ReadLine();
+                Cosmetics.DisplayContents();
+
+                //foreach (var item in cosmeticslist)
+                //{
+                //    Console.WriteLine(item);
+                //}
+                //Console.ReadLine();
 
                 Console.WriteLine("Let's go shopping!");
 
