@@ -71,7 +71,7 @@ namespace OnlineCosmeticsStore
                     }
                 }//end while bracket
 
-                //Displays all items in store.
+                //Calls the cosmetics class which houses the DisplayContents property.
                 Console.WriteLine("Ok, let's check out what cool items we have in store!");
                 var cosmeticslist = Cosmetics.GetAllCosmetics();
                 Cosmetics.DisplayContents();

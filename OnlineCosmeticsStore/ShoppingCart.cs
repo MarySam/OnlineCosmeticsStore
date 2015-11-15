@@ -31,23 +31,39 @@ namespace OnlineCosmeticsStore
                 }
 
                 return total;
-        
-            }
-        }
-       
-        public override string ToString()
-        {
-            StringBuilder builder = new StringBuilder();
-            builder.AppendFormat("Customer: {0}\n", this.Customer.CustomerName);
-            builder.AppendFormat("Total Price: {0}\n", this.TotalPrice);
-            builder.AppendLine("Items:");
-            foreach (Cosmetics item in this.Items)
-            {
-                builder.AppendLine(item.ToString());
-            }
 
-            return builder.ToString();
+            }
         }
+
+        public int TotalQuantity
+        {
+            get
+            {
+                int total = 0;
+                Cosmetics currentItem = this.Items[total];
+                while (currentItem != null)
+                {
+                    total++;
+                    currentItem = this.Items[total];
+                }
+
+                return total;
+            }
+        }
+
+        //public override string ToString()
+        //{
+        //    StringBuilder builder = new StringBuilder();
+        //    builder.AppendFormat("Customer: {0}\n", this.Customer.CustomerName);
+        //    builder.AppendFormat("Total Price: {0}\n", this.TotalPrice);
+        //    builder.AppendLine("Items:");
+        //    foreach (Cosmetics item in this.Items)
+        //    {
+        //        builder.AppendLine(item.ToString());
+        //    }
+
+        //    return builder.ToString();
+        //}
     }
 }
 
