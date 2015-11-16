@@ -44,8 +44,28 @@ namespace OnlineCosmeticsStore
             {
                 var allCosmetics = db.CosmeticsList;
                 return allCosmetics.ToArray();
-
             }
+        }
+
+        public static Cosmetics GetCosmeticsItem(int itemNumber)
+        {
+            using (var db = new CosmeticsModel())
+            {
+                //db.CosmeticsList.Where(item => item.CosmeticItemNumber == itemNumber);
+
+                // Check each item in the cosmetics list and return the first one that
+                // matches the item number we're looking for.
+                foreach (Cosmetics item in db.CosmeticsList)
+                {
+                    if (item.CosmeticItemNumber == itemNumber)
+                    {
+                        return item;
+                    }
+                }
+            }
+
+            // If we couldn't find the item in the cosmetics list, just return null.
+            return null;
         }
 
         public override string ToString()
@@ -75,7 +95,6 @@ namespace OnlineCosmeticsStore
             Console.ReadLine();
         }
     }
-
 
 }
 

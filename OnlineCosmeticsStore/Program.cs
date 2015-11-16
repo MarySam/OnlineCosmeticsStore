@@ -29,7 +29,6 @@ namespace OnlineCosmeticsStore
                         {
                             Console.WriteLine("Ok, great! Please enter in your email address");
 
-                            //Here we are displaying the email back to the user and converting it all to lowercase for consistency.
                             var email = Console.ReadLine();
                             string convertedEmail = email.ToLower();
 
@@ -47,7 +46,6 @@ namespace OnlineCosmeticsStore
                             {   //In case there are more than one accounts with the same email address.  For simplicity, we are defaulting to the first account on file. Hence the [0] element.
                                 customer = customerInfo[0];
                                 Console.WriteLine("Welcome Back {0}", customer.CustomerName);
-                                //A break to take the logged in customer out of the while loop so that they could see what items we have in store.
                                 break;
                             }
                         }
@@ -86,14 +84,8 @@ namespace OnlineCosmeticsStore
 
                 ShoppingCart shoppingCart = new ShoppingCart();
                 shoppingCart.Customer = customer;
+                shoppingCart.AddRemoveItems();
 
-                List<Cosmetics> shoppingList = new List<Cosmetics>();
-                shoppingList.Add(cosmeticslist[0]);
-                shoppingList.Add(cosmeticslist[3]);
-
-                shoppingCart.Items = shoppingList.ToArray();
-                Console.WriteLine("Here's what you bought:");
-                Console.WriteLine(shoppingCart);
                 Console.ReadLine();
             }
             catch (Exception)
@@ -105,6 +97,13 @@ namespace OnlineCosmeticsStore
     }
 }
 
+//List<Cosmetics> shoppingList = new List<Cosmetics>();
+//shoppingList.Add(cosmeticslist[0]);
+//shoppingList.Add(cosmeticslist[3]);
+
+//shoppingCart.Items = shoppingList.ToArray();
+//Console.WriteLine("Here's what you bought:");
+//Console.WriteLine(shoppingCart);
 
 
 
