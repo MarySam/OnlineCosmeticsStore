@@ -1,0 +1,45 @@
+﻿@model IEnumerable<OnlineCosmeticsStore.CustomerInformation>
+
+@{
+    ViewBag.Title = "SignIn";
+}
+
+<h2>SignIn</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AccountNumber)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AccountNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EmailAddress }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EmailAddress }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EmailAddress })
+        </td>
+    </tr>
+}
+
+</table>
