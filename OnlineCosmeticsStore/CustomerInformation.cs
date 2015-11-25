@@ -88,6 +88,9 @@ namespace OnlineCosmeticsStore
                 return customerInfo.ToArray();
             }
         }
+
+        //Create a method for DETAILS.
+        //public static Account GetAccountBy...
     }
 }
 

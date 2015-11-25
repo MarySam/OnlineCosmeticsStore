@@ -31,6 +31,22 @@ namespace OnlineCosmeticsStoreUI.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Create()
+        {
+            //Get.
+            return View();
+        }
+
+        [HttpPost]
+        //Need POST method here.  
+        //public ActionResult Create (Account account)
+
+
+        //Need DETAILS method here.
+        //public ActionResult Detail(string id)
+
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
