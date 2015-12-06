@@ -21,7 +21,7 @@ namespace OnlineCosmeticsStoreUI.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("CustomerModel", throwIfV1Schema: false)
         {
         }
 
