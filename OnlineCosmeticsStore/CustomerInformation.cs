@@ -11,7 +11,6 @@ namespace OnlineCosmeticsStore
 {
     public class CustomerInformation
     {
-        //Variable
         private static int lastAccountNumber = 0;
         private static List<CustomerInformation> customerInformations = new List<CustomerInformation>();
         private static bool accountsLoaded = false;
@@ -26,11 +25,6 @@ namespace OnlineCosmeticsStore
 
         public int AccountNumber { get; private set; }
 
-        //For the account number to increment by 1
-        /// <summary>
-        /// Default Constructor
-        /// </summary>
-
         //Constructors
         public CustomerInformation()
         {
@@ -38,23 +32,8 @@ namespace OnlineCosmeticsStore
             AccountNumber = lastAccountNumber;
         }
 
-        public static CustomerInformation CreateCustomerInformation()
+        public static CustomerInformation CreateCustomerInformation(string customerName, string customerEmailAddress, string customerAddress)
         {
-            #region Entering in Name
-            Console.Write("Please enter your name:");
-            string customerNameInput = Console.ReadLine();
-            #endregion
-
-            #region Entering in Email Address
-            Console.Write("Please enter your Email address:");
-            string customerEmailAddressInput = Console.ReadLine();
-            #endregion
-
-            #region Entering in Address
-            Console.Write("Please enter you address:");
-            string customerAddressInput = Console.ReadLine();
-            #endregion
-
             using (var db = new CustomerModel())
             {
                 if (!accountsLoaded)
@@ -65,16 +44,13 @@ namespace OnlineCosmeticsStore
                 }
 
                 CustomerInformation customerAccount = new CustomerInformation();
-                customerAccount.CustomerName = customerNameInput;
-                customerAccount.EmailAddress = customerEmailAddressInput;
-                customerAccount.Address = customerAddressInput;
-                                
+                customerAccount.CustomerName = customerName;
+                customerAccount.EmailAddress = customerEmailAddress;
+                customerAccount.Address = customerAddress;
+
                 customerInformations.Add(customerAccount);
                 db.CustomerInformations.Add(customerAccount);
                 db.SaveChanges();
-
-                Console.WriteLine("CustomerName: {0}, CustomerEmailAddress: {1}, Address: {2}, AccountNumber {3}", customerAccount.CustomerName, customerAccount.EmailAddress, customerAccount.Address, customerAccount.AccountNumber);
-                Console.ReadLine();
 
                 return customerAccount;
             }

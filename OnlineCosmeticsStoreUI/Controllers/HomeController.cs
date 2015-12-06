@@ -22,13 +22,10 @@ namespace OnlineCosmeticsStoreUI.Controllers
         {
             //This is going to call the index.cshtml and find the textbox called "txtEmail"
             var email = collection["txtEmail"];
-            {
+            
                 var accounts = CustomerInformation.GetAllCustomerInformationByEmail(email);
                 //Prints out the all accounts in the html.
                 return View(accounts);
-            }
-
-            return View();
         }
 
         [HttpGet]
@@ -39,14 +36,22 @@ namespace OnlineCosmeticsStoreUI.Controllers
         }
 
         [HttpPost]
-        //Need POST method here.  
-        //public ActionResult Create (Account account)
+        public ActionResult Create(CustomerInformation account)
+        {
+            var newAccount = CustomerInformation.CreateCustomerInformation(account.EmailAddress, account.CustomerName, account.Address);
+            if (newAccount != null)
+            {
+                return RedirectToAction("Detail", new { id = newAccount.EmailAddress});
+            }
+            return View();
+        }
 
-
-        //Need DETAILS method here.
-        //public ActionResult Detail(string id)
-
-
+        public ActionResult Detail(string id)
+        {
+            var account = CustomerInformation.GetAllCustomerInformationByEmail(id);
+            return View(account);
+        }
+        
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
