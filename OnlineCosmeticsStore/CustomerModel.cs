@@ -16,7 +16,7 @@ namespace OnlineCosmeticsStore
         // If you wish to target a different database and/or database provider, modify the 'CustomerModel' 
         // connection string in the application configuration file.
         public CustomerModel()
-            : base("name=CustomerModellocalDb")
+            : base("name=CustomerModel")
         {
         }
 

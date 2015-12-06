@@ -36,7 +36,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.EmailAddress }) |
-            @Html.ActionLink("Details", "Detail", new { id=item.EmailAddress }) |
+            @Html.ActionLink("Details", "Detail", new { id=item.EmailAddress.Replace(".", "~") }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.EmailAddress })
         </td>
     </tr>

@@ -18,11 +18,11 @@ namespace OnlineCosmeticsStore
         //Properties
         public string CustomerName { get; set; }
 
-        [Key]
+
         public string EmailAddress { get; set; }
 
         public string Address { get; set; }
-
+        [Key]
         public int AccountNumber { get; private set; }
 
         //Constructors
@@ -64,10 +64,10 @@ namespace OnlineCosmeticsStore
                 return customerInfo.ToArray();
             }
         }
-
-        //Create a method for DETAILS.
-        //public static Account GetAccountBy...
     }
 }
+
+
+
 
 
