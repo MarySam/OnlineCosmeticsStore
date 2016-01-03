@@ -1,4 +1,5 @@
-﻿using OnlineCosmeticsStore;
+﻿using Microsoft.AspNet.Identity;
+using OnlineCosmeticsStore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace OnlineCosmeticsStoreUI.Controllers
     public class HomeController : Controller
     {
         //This is the default method.  The Index is the entry point similar to the main method. 
+        [Authorize]
         public ActionResult Index()
         {
             //This is the html front end.  What displays to the user.
@@ -18,17 +20,16 @@ namespace OnlineCosmeticsStoreUI.Controllers
         //The ActionResult is a return TYPE. 
         //SignIn is the method name.
         //FormCollection collection is the parameter.
-        public ActionResult SignIn(FormCollection collection)
+        public ActionResult GetAllAccounts()
         {
-            //This is going to call the index.cshtml and find the textbox called "txtEmail"
-            var email = collection["txtEmail"];
-            
-            var accounts = CustomerInformation.GetAllCustomerInformationByEmail(email);
+                     
+            var accounts = CustomerInformation.GetAllCustomerInformationByEmail(User.Identity.GetUserName());
             //Prints out the all accounts in the html.
             return View(accounts);
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult Create()
         {
             //Get.
@@ -36,9 +37,10 @@ namespace OnlineCosmeticsStoreUI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Create(CustomerInformation account)
         {
-            var newAccount = CustomerInformation.CreateCustomerInformation(account.CustomerName, account.EmailAddress, account.Address);
+            var newAccount = CustomerInformation.CreateCustomerInformation(account.CustomerName, User.Identity.GetUserName(), account.Address);
             if (newAccount != null)
             {
                 return RedirectToAction("Detail", new { id = newAccount.EmailAddress.Replace(".", "~") });
